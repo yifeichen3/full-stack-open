@@ -56,7 +56,7 @@ const App = () => {
             phoneService
                 .deletePerson(person.id)
                 .then(returnedPerson => {
-                    setPersons(persons.filter(person => returnedPerson.id !== person.id))
+                    setPersons(persons.data.filter(person => returnedPerson.id !== person.id))
                 })
                 .catch(error => {
                     setMessage(`[ERROR] ${error.response.data.error}`)
@@ -68,7 +68,7 @@ const App = () => {
     }
     const addPerson = (event) => {
         event.preventDefault()
-        const person = persons.filter(person => (person.name === newName))
+        const person = persons.data.filter(person => (person.name === newName))
         const newPerson = {
             name: newName,
             number: newNumber
@@ -77,7 +77,7 @@ const App = () => {
             phoneService
                 .create(newPerson)
                 .then(returnedPerson => {
-                    setPersons(persons.concat(returnedPerson))
+                    setPersons(persons.data.concat(returnedPerson))
                     setNewName('')
                     setNewNumber('')
                     setMessage(`Added ${returnedPerson.name}`)
@@ -92,7 +92,9 @@ const App = () => {
                 phoneService
                     .update(person[0].id, newPerson)
                     .then(returnedPerson => {
-                        setPersons(persons.map(person => person.name === returnedPerson.name ? returnedPerson : person))
+                        setPersons(persons.data.map(person => person.name === returnedPerson.name ? returnedPerson : person))
+                        setNewName('')
+                        setNewNumber('')
                         setMessage(`Updated ${returnedPerson.name}`)
                         setTimeout(() => {
                             setMessage(null)
