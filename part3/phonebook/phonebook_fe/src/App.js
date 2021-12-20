@@ -77,10 +77,17 @@ const App = () => {
             phoneService
                 .create(newPerson)
                 .then(returnedPerson => {
+                    console.log("here")
                     setPersons(persons.data.concat(returnedPerson))
                     setNewName('')
                     setNewNumber('')
                     setMessage(`Added ${returnedPerson.name}`)
+                    setTimeout(() => {
+                        setMessage(null)
+                    }, 5000)
+                })
+                .catch(error => {
+                    setMessage(`[ERROR] ${error.response.data.error}`)
                     setTimeout(() => {
                         setMessage(null)
                     }, 5000)
