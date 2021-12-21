@@ -1,0 +1,30 @@
+{
+  "name": "bloglist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../notebook_fe && npm run build && cp -r build ../notebook_be",
+    "deploy": "git push heroku master",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs -- tail",
+    "lint": "eslint .",
+    "test": "jest --verbose"
+  },
+  "author": "Yifei Chen",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.2"
+  },
+  "devDependencies": {
+    "jest": "^27.4.5"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
