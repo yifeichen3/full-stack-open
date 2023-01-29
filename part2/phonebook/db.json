@@ -1,10 +1,5 @@
 {
-  "persons":[
-    {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
-    },
+  "persons": [
     {
       "name": "Ada Lovelace",
       "number": "39-44-5323523",
@@ -16,9 +11,19 @@
       "id": 3
     },
     {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
+      "name": "Frank Star",
+      "number": "53-34-235234",
       "id": 4
+    },
+    {
+      "name": "Mary Young",
+      "number": "12-24-565464",
+      "id": 5
+    },
+    {
+      "name": "Yifei C",
+      "number": "23-3525-2425",
+      "id": 6
     }
   ]
 }

@@ -1,7 +1,13 @@
-const Persons = ({filterPersons}) => {
+const Persons = ({filterPersons, confirmDelete}) => {
   return (
     <>
-      {filterPersons.map((person) => <div key={person.id}>{person.name} {person.number}</div>)}
+      {filterPersons.map((person) => {
+        return (
+          <>
+            <div key={person.id}>{person.name} {person.number} <button onClick={() => confirmDelete(person)}>delete</button></div>
+          </>
+        )
+      })}
     </>
   )
 }
