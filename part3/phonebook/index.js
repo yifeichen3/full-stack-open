@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 app.use(express.json());
 app.use(cors());
+app.use(express.static('build'));
 
 // morgan logger middleware
 // example: POST /api/persons 200 48 1.069 ms {"name":"Fay","number":"123-456-2347"}
