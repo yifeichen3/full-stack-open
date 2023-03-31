@@ -9,7 +9,8 @@
     "dev": "node_modules/.bin/nodemon index.js",
     "build:ui": "rm -rf build && cd ../../part2/phonebook && npm run build && cp -r build ../../part3/phonebook",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push heroku main",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "author": "Yifei Chen",
   "license": "MIT",
@@ -21,6 +22,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^8.37.0",
     "nodemon": "^2.0.21"
   }
 }

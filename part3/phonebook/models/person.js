@@ -1,17 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const url = process.env.MONGODB_URL;
+const url = process.env.MONGODB_URL
 
-console.log('connecting to MongoDB');
+console.log('connecting to MongoDB')
 
 mongoose.connect(url)
-  .then(res => console.log('connected suscessfully'))
-  .catch(error => console.log(`MongoDB connection error: ${error.message}`));
+  .then(res => console.log('connected successfully'))
+  .catch(error => console.log(`MongoDB connection error: ${error.message}`))
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
-});
+  name: {
+    type: String,
+    required: true,
+    minLength: 3
+  },
+  number: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function(v) {
+        return /^\d{2,3}-\d+/.test(v)
+      },
+      message: props => `${props.value} is not a valid phone number!`
+    },
+    minLength: 9
+  },
+})
 
 // Even though the _id property of Mongoose objects looks like a string,
 // it is in fact an object. The toJSON method we defined transforms it into
@@ -23,6 +37,6 @@ personSchema.set('toJSON', {
     delete returnedObject._id
     delete returnedObject.__v
   }
-});
+})
 
-module.exports = mongoose.model('Person', personSchema);
+module.exports = mongoose.model('Person', personSchema)
